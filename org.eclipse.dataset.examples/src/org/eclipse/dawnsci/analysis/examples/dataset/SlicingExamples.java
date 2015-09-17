@@ -11,15 +11,10 @@
  *******************************************************************************/
 package org.eclipse.dawnsci.analysis.examples.dataset;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.eclipse.dataset.IDataset;
 import org.eclipse.dataset.ILazyDataset;
 import org.eclipse.dataset.Random;
 import org.eclipse.dataset.Slice;
-import org.eclipse.dataset.slicer.SliceVisitor;
-import org.eclipse.dataset.slicer.Slicer;
 import org.junit.Test;
 
 /**
@@ -60,32 +55,4 @@ public class SlicingExamples {
             System.out.println("Slice object sliced "+count+" "+image);
 		}
 	}
-
-
-	/**
-	 * Slice visitor
-	 */
-	@Test
-	public void slicerImages() throws Exception {
-		
-		final ILazyDataset         lz   = Random.lazyRand(64, 100, 100);
-		final Map<Integer, String> dims = new HashMap<Integer, String>();
-		dims.put(0, "all");
-		Slicer.visitAll(lz, dims, new SliceVisitor() {
-			
-			private int count = 0;
-			@Override
-			public void visit(IDataset data, Slice[] selectedSlice, int[] selectedShape) throws Exception {
-				
-                IDataset image = data.squeeze(); // We squeeze the slice to get the image.
-                ++count;
-                System.out.println("Image "+count+" "+image);
-			}
-			@Override
-			public boolean isCancelled() {
-				return false;
-			}
-		});
-	}
-	
 }

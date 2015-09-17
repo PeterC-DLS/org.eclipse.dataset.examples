@@ -15,18 +15,18 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.eclipse.dataset.BooleanDataset;
-import org.eclipse.dataset.Comparisons;
-import org.eclipse.dataset.Dataset;
-import org.eclipse.dataset.DatasetFactory;
-import org.eclipse.dataset.DatasetUtils;
-import org.eclipse.dataset.DoubleDataset;
 import org.eclipse.dataset.IDataset;
-import org.eclipse.dataset.IntegerDataset;
 import org.eclipse.dataset.LinearAlgebra;
-import org.eclipse.dataset.Maths;
 import org.eclipse.dataset.Random;
 import org.eclipse.dataset.Slice;
+import org.eclipse.dataset.impl.BooleanDataset;
+import org.eclipse.dataset.impl.Comparisons;
+import org.eclipse.dataset.impl.Dataset;
+import org.eclipse.dataset.impl.DatasetFactory;
+import org.eclipse.dataset.impl.DatasetUtils;
+import org.eclipse.dataset.impl.DoubleDataset;
+import org.eclipse.dataset.impl.IntegerDataset;
+import org.eclipse.dataset.impl.Maths;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -437,7 +437,8 @@ public class NumpyExamples {
     4 equally spaced samples between 1 and 3, inclusive
     linspace(1,3,4)                          linspace(1,3,4)     
     */
-    @Test
+    @SuppressWarnings("unused")
+	@Test
     public void various() {
     	
     	IDataset zeros = DatasetFactory.zeros(new int[]{3, 4}, Dataset.FLOAT64);
@@ -524,7 +525,8 @@ public class NumpyExamples {
     compares a and b element-wise, and returns the maximum value from each pair
     max(a,b)                          maximum(a, b)
     */
-    @Test
+    @SuppressWarnings("unused")
+	@Test
     public void maxes() {
     	
     	double max = a.max().doubleValue();
