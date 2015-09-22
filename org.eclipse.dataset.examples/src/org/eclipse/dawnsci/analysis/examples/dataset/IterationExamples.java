@@ -16,11 +16,10 @@ import static org.junit.Assert.assertEquals;
 import java.util.Arrays;
 
 import org.eclipse.dataset.PositionIterator;
-import org.eclipse.dataset.impl.Dataset;
-import org.eclipse.dataset.impl.DatasetFactory;
-import org.eclipse.dataset.impl.DoubleDataset;
-import org.eclipse.dataset.impl.IndexIterator;
-import org.eclipse.dataset.impl.StrideIterator;
+import org.eclipse.dataset.dense.Dataset;
+import org.eclipse.dataset.dense.DatasetFactory;
+import org.eclipse.dataset.dense.IndexIterator;
+import org.eclipse.dataset.internal.dense.StrideIterator;
 import org.junit.Test;
 
 
@@ -58,7 +57,7 @@ public class IterationExamples {
 	@Test
 	public void positionIterator() {
 		
-		final Dataset data = new DoubleDataset(new double[]{1,2,3,4,5,6,7,8}, 2,2,2);
+		final Dataset data = DatasetFactory.createFromObject(new double[]{1,2,3,4,5,6,7,8}).reshape(2,2,2);
 		
 		// The position iterator allows you to iterate over dataset but fixing axis 0
 		PositionIterator it = data.getPositionIterator(0);		

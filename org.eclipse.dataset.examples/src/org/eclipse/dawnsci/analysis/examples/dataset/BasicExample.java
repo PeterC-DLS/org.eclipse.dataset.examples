@@ -17,9 +17,9 @@ import java.io.PrintStream;
 import java.util.Arrays;
 
 import org.eclipse.dataset.Slice;
-import org.eclipse.dataset.impl.Dataset;
-import org.eclipse.dataset.impl.DoubleDataset;
-import org.eclipse.dataset.impl.Maths;
+import org.eclipse.dataset.dense.Dataset;
+import org.eclipse.dataset.dense.DatasetFactory;
+import org.eclipse.dataset.dense.Maths;
 import org.slf4j.LoggerFactory;
 
 /**
@@ -37,7 +37,7 @@ public class BasicExample {
 		System.out.println("Welcome to a Basic Example of the org.eclipse.dataset.");
 
 		// Create a Dataset:
-		Dataset dataset = new DoubleDataset(new double[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 });
+		Dataset dataset = DatasetFactory.createFromObject(new double[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 });
 
 		// Print the output:
 		System.out.println("shape of dataset: " + Arrays.toString(dataset.getShape()));
@@ -49,7 +49,7 @@ public class BasicExample {
 		System.out.println("reshaped dataset: \n" + dataset.toString(true));
 
 		// create another [3, 3] shaped dataset directly
-		Dataset another = new DoubleDataset(new double[] { 1, 1, 2, 3, 5, 8, 13, 21, 34 }, 3, 3);
+		Dataset another = DatasetFactory.createFromObject(new double[] { 1, 1, 2, 3, 5, 8, 13, 21, 34 }).reshape(3, 3);
 		System.out.println("another dataset: \n" + another.toString(true));
 
 		// do some maths on the datasets
@@ -57,7 +57,7 @@ public class BasicExample {
 		System.out.println("dataset + another dataset: \n" + add.toString(true));
 
 		// do inplace maths on datasets
-		Dataset inplace = new DoubleDataset(new double[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 }, 3, 3);
+		Dataset inplace = DatasetFactory.createFromObject(new double[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 }).reshape(3, 3);
 		inplace.iadd(100);
 		System.out.println("dataset + 100 inplace: \n" + inplace.toString(true));
 

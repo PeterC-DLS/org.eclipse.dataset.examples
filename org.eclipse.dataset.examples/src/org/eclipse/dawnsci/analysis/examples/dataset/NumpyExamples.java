@@ -17,16 +17,13 @@ import java.util.List;
 
 import org.eclipse.dataset.IDataset;
 import org.eclipse.dataset.Slice;
-import org.eclipse.dataset.impl.BooleanDataset;
-import org.eclipse.dataset.impl.Comparisons;
-import org.eclipse.dataset.impl.Dataset;
-import org.eclipse.dataset.impl.DatasetFactory;
-import org.eclipse.dataset.impl.DatasetUtils;
-import org.eclipse.dataset.impl.DoubleDataset;
-import org.eclipse.dataset.impl.IntegerDataset;
-import org.eclipse.dataset.impl.LinearAlgebra;
-import org.eclipse.dataset.impl.Maths;
-import org.eclipse.dataset.impl.Random;
+import org.eclipse.dataset.dense.Comparisons;
+import org.eclipse.dataset.dense.Dataset;
+import org.eclipse.dataset.dense.DatasetFactory;
+import org.eclipse.dataset.dense.DatasetUtils;
+import org.eclipse.dataset.dense.LinearAlgebra;
+import org.eclipse.dataset.dense.Maths;
+import org.eclipse.dataset.dense.Random;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -50,10 +47,10 @@ public class NumpyExamples {
 
 	@Before
 	public void create() {
-		a = new DoubleDataset(new double[]{1,2,3,6,4,5,8,9,7}, 3, 3);
-		b = new DoubleDataset(new double[]{1.1,2.2,3.3,4.4,5.5,6.6}, 2, 3);
-		c = new DoubleDataset(new double[]{1.1,2.2,3.3,4.4,5.5,6.6,7.7,8.8,9.9}, 3, 3);
-		v = new DoubleDataset(new double[]{7,1,9});
+		a = DatasetFactory.createFromObject(new double[]{1,2,3,6,4,5,8,9,7}).reshape(3, 3);
+		b = DatasetFactory.createFromObject(new double[]{1.1,2.2,3.3,4.4,5.5,6.6}).reshape(2, 3);
+		c = DatasetFactory.createFromObject(new double[]{1.1,2.2,3.3,4.4,5.5,6.6,7.7,8.8,9.9}).reshape(3, 3);
+		v = DatasetFactory.createFromObject(new double[]{7,1,9});
 	}
 	
 	/**
@@ -92,7 +89,7 @@ public class NumpyExamples {
 	 */
 	@Test
 	public void createMatrix() {
-		IDataset set = new DoubleDataset(new double[]{1,2,3,4,5,6}, 2,3);
+		IDataset set = DatasetFactory.createFromObject(new double[]{1,2,3,4,5,6}).reshape(2, 3);
 		System.out.println("Created a dataset : "+set);
 	}
 	
@@ -106,8 +103,8 @@ public class NumpyExamples {
 		
 		IDataset h1 = DatasetUtils.concatenate(new IDataset[]{a,c},   1);
 
-		IDataset c = new DoubleDataset(new double[]{1,2,3,4,5,6}, 2, 3);
-		IDataset d = new DoubleDataset(new double[]{1,2,3,4,5,6}, 2, 3);
+		IDataset c = DatasetFactory.createFromObject(new double[]{1,2,3,4,5,6}).reshape(2, 3);
+		IDataset d = DatasetFactory.createFromObject(new double[]{1,2,3,4,5,6}).reshape(2, 3);
 		IDataset h2 = DatasetUtils.concatenate(new IDataset[]{c,d},   1);
 		IDataset m  = DatasetUtils.concatenate(new IDataset[]{h1,h2}, 0);
 		
@@ -313,7 +310,7 @@ public class NumpyExamples {
     @Test
     public void matrixTest2() {
     	Dataset v = Random.rand(3);
-    	List<IntegerDataset> nonZero = Comparisons.nonZero(Comparisons.greaterThan(v, 0.5));
+    	List<Dataset> nonZero = Comparisons.nonZero(Comparisons.greaterThan(v, 0.5));
     	if (nonZero.size() > 0) {
         	Dataset nz = nonZero.get(0);
         	System.out.println("" + a.getByIndexes(null, nz));
@@ -561,11 +558,11 @@ public class NumpyExamples {
     public void logicalAnd() {
     	
     	// Equivalent tech
-    	BooleanDataset bs = Comparisons.logicalAnd(a, b);
+    	Dataset bs = Comparisons.logicalAnd(a, b);
       	System.out.println("Result of a && b "+bs);
   	
     	// Or more useful (?)
-    	final IDataset booleans = new BooleanDataset(2,3);
+    	final IDataset booleans = DatasetFactory.zeros(new int[] {2,3}, Dataset.BOOL);
        	booleans.set(true, 0,0);
        	booleans.set(true, 1,1);
        	booleans.set(true, 1,2);
@@ -579,7 +576,7 @@ public class NumpyExamples {
      */
     @Test
     public void logicalOr() {
-    	BooleanDataset bs = Comparisons.logicalOr(a, b);
+    	Dataset bs = Comparisons.logicalOr(a, b);
       	System.out.println("Result of a || b "+bs);
     }
     
@@ -679,7 +676,7 @@ public class NumpyExamples {
     */
     @Test
     public void cholesky() {
-    	Dataset c = LinearAlgebra.calcCholeskyDecomposition(new DoubleDataset(new double[] {9, 0, 1.5, 0, 3, 2, 1.5, 2, 4}, 3, 3));
+    	Dataset c = LinearAlgebra.calcCholeskyDecomposition(DatasetFactory.createFromObject(new double[] {9, 0, 1.5, 0, 3, 2, 1.5, 2, 4}).reshape(3, 3));
     	System.out.println("Choleskey decomposition of a " + c);
     }
     
