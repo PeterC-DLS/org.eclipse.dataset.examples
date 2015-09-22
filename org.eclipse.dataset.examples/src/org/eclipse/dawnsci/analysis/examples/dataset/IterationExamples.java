@@ -15,11 +15,11 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.Arrays;
 
-import org.eclipse.dataset.IndexIterator;
 import org.eclipse.dataset.PositionIterator;
 import org.eclipse.dataset.impl.Dataset;
 import org.eclipse.dataset.impl.DatasetFactory;
 import org.eclipse.dataset.impl.DoubleDataset;
+import org.eclipse.dataset.impl.IndexIterator;
 import org.eclipse.dataset.impl.StrideIterator;
 import org.junit.Test;
 
