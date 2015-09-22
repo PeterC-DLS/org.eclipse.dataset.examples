@@ -16,8 +16,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.eclipse.dataset.IDataset;
-import org.eclipse.dataset.LinearAlgebra;
-import org.eclipse.dataset.Random;
 import org.eclipse.dataset.Slice;
 import org.eclipse.dataset.impl.BooleanDataset;
 import org.eclipse.dataset.impl.Comparisons;
@@ -26,7 +24,9 @@ import org.eclipse.dataset.impl.DatasetFactory;
 import org.eclipse.dataset.impl.DatasetUtils;
 import org.eclipse.dataset.impl.DoubleDataset;
 import org.eclipse.dataset.impl.IntegerDataset;
+import org.eclipse.dataset.impl.LinearAlgebra;
 import org.eclipse.dataset.impl.Maths;
+import org.eclipse.dataset.impl.Random;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;

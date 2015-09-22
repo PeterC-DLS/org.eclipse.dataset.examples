@@ -13,8 +13,8 @@ package org.eclipse.dawnsci.analysis.examples.dataset;
 
 import org.eclipse.dataset.IDataset;
 import org.eclipse.dataset.ILazyDataset;
-import org.eclipse.dataset.Random;
 import org.eclipse.dataset.Slice;
+import org.eclipse.dataset.impl.Random;
 import org.junit.Test;
 
 /**
