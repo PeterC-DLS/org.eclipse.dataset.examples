@@ -12,15 +12,12 @@
 
 package org.eclipse.dataset.examples;
 
-import java.io.OutputStream;
-import java.io.PrintStream;
 import java.util.Arrays;
 
 import org.eclipse.dataset.Slice;
 import org.eclipse.dataset.dense.Dataset;
 import org.eclipse.dataset.dense.DatasetFactory;
 import org.eclipse.dataset.dense.Maths;
-import org.slf4j.LoggerFactory;
 
 /**
  * A basic example of using Datasets.
@@ -33,7 +30,7 @@ import org.slf4j.LoggerFactory;
  */
 public class BasicExample {
 	public static void main(String[] args) {
-		suppressSLF4JError();
+		Utils.suppressSLF4JError();
 		System.out.println("Welcome to a Basic Example of the org.eclipse.dataset.");
 
 		// Create a Dataset:
@@ -66,33 +63,5 @@ public class BasicExample {
 		System.out.println("slice of dataset: \n" + slice.toString(true));
 
 		// for more examples, see the other java files in this project
-	}
-
-	/**
-	 * The SLF4J logger produces output when it is not properly configured. For
-	 * the purpose of a simple demo, suppress the error message rather than
-	 * adding the requirement of a fully configured logger.
-	 * <p>
-	 * The error message suppressed is:
-	 *
-	 * <pre>
-	 * SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
-	 * SLF4J: Defaulting to no-operation (NOP) logger implementation
-	 * SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
-	 * </pre>
-	 */
-	private static void suppressSLF4JError() {
-		PrintStream saved = System.err;
-		try {
-			System.setErr(new PrintStream(new OutputStream() {
-				public void write(int b) {
-				}
-			}));
-
-			LoggerFactory.getLogger(BasicExample.class);
-
-		} finally {
-			System.setErr(saved);
-		}
 	}
 }
