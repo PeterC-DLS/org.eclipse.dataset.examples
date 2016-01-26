@@ -10,7 +10,7 @@
  *    Jonah Graham - initial implementation
  */
 
-package org.eclipse.dawnsci.analysis.examples.dataset;
+package org.eclipse.dataset.examples;
 
 import java.io.OutputStream;
 import java.io.PrintStream;

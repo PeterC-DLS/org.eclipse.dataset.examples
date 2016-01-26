@@ -9,7 +9,7 @@
  * Contributors:
  *    Matthew Gerring - initial API and implementation and/or initial documentation
  *******************************************************************************/
-package org.eclipse.dawnsci.analysis.examples.dataset;
+package org.eclipse.dataset.examples;
 
 import org.eclipse.dataset.dense.Dataset;
 import org.eclipse.dataset.dense.Random;
