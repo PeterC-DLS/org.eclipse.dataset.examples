@@ -72,7 +72,7 @@ public class NumpyExamples {
 	 */
 	@Test
 	public void size() {
-		System.out.println("a has size "+a.getSize());
+		System.out.println("a has size "+a.getLongSize());
 	}
 	
 	/**
@@ -406,7 +406,7 @@ public class NumpyExamples {
     @Test
     public void columnVector() {
     	IDataset aran = DatasetFactory.createRange(1, 11, 1, Dataset.FLOAT64);
-    	aran.resize(aran.getSize(), 1);
+    	aran.resize((int) aran.getLongSize(), 1);
     }
     
     /** 
@@ -472,7 +472,7 @@ public class NumpyExamples {
     	int[] shape = new int[rank];
     	Arrays.fill(shape, 1);
     	for (int i = 0; i < rank; i++) {
-    		shape[i] = indexes[i].getSize();
+    		shape[i] = (int) indexes[i].getLongSize();
     		og.add(indexes[i].reshape(shape));
     		shape[i] = 1;
     	}

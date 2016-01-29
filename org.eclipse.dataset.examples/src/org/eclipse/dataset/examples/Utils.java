@@ -59,6 +59,10 @@ public class Utils {
 		System.out.println(a);
 	}
 
+	public static void print(long a) {
+		System.out.println(a);
+	}
+
 	public static void print(String a) {
 		System.out.println(a);
 	}

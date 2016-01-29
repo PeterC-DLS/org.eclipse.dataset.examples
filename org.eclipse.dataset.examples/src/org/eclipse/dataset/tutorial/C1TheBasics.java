@@ -34,7 +34,7 @@ public class C1TheBasics {
 		Utils.print(a.getItemsize());
 
 		// number of items
-		Utils.print(a.getSize());
+		Utils.print(a.getLongSize());
 
 		Class<?> clazz = a.getClass().getSuperclass().getInterfaces()[0];
 		Utils.print(clazz.toString());
